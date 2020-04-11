@@ -37,13 +37,24 @@
 //     return Object.values(anagrams);
 // };
 
+// var groupAnagrams = function(strs) {
+//   let anagrams = {};
+
+//   strs.forEach(str => {
+//     let key = [...str].sort();
+//     anagrams[key] ? anagrams[key].push(str) : anagrams[key] = [str];
+//    });
+
+//   return Object.values(anagrams);
+// };
+
 var groupAnagrams = function(strs) {
   let anagrams = {};
-
-  strs.forEach(str => {
+  
+  for(let str in strs) {
     let key = [...str].sort();
     anagrams[key] ? anagrams[key].push(str) : anagrams[key] = [str];
-   });
+  }
 
   return Object.values(anagrams);
 };
