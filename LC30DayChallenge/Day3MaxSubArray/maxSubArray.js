@@ -16,7 +16,7 @@ var maxSubArray = function(nums) {
     if(j + 1 < nums.length) return recurse(i, j + 1);
 
     // all subarrays accounted for
-    if(i === j && i === nums.length -1) return;
+    if(i === j && i === nums.length - 1) return;
 
     // increment start by 1 and keep recursing
     return recurse(i + 1, i + 1);
