@@ -46,6 +46,8 @@
  * @param {number[][]} trust
  * @return {number}
  */
+
+
 var findJudge = function(N, trust) {
   let map = {};
   if (trust.length === 0) return 1;
