@@ -59,18 +59,42 @@ let s = [17, 8, 12, 19, 24, 2];
 //   return true;
 // }
 
+// let orderChecker = (dineInOrders, takeOutOrders, servedOrders) => {
+//   let j = 0;
+//   let k = 0;
+//   for(let i = 0; i < servedOrders.length; i++) {
+//     if(servedOrders[i] === dineInOrders[j]) {
+//       j++;
+//     } else if(servedOrders[i] === takeOutOrders[k]) {
+//       k++;
+//     } else {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// orderChecker(d,t,s)
+
 let orderChecker = (dineInOrders, takeOutOrders, servedOrders) => {
   let j = 0;
   let k = 0;
+  let maxJ = dineInOrders.length - 1;
+  let maxK = takeOutOrders.length - 1;
+
+
   for(let i = 0; i < servedOrders.length; i++) {
-    if(servedOrders[i] === dineInOrders[j]) {
+    if(j <= maxJ && servedOrders[i] === dineInOrders[j]) {
       j++;
-    } else if(servedOrders[i] === takeOutOrders[k]) {
+    } else if(k <= maxK && servedOrders[i] === takeOutOrders[k]) {
       k++;
     } else {
       return false;
     }
   }
+
+  if(j !== maxJ + 1 || k !== maxK + 1) return false;
+
   return true;
 }
 
