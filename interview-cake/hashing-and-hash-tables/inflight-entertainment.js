@@ -13,11 +13,11 @@
 let canYouWatchTwoMovies = (flightLength, movieLengths) => {
   let seenMovies = new Set();
   for(let i = 0; i < movieLengths.length; i++) {
-    let flightTimeRemaining = flightLength - movieLength[i];
+    let flightTimeRemaining = flightLength - movieLengths[i];
     if(seenMovies.has(flightTimeRemaining)) {
       return true;
     } else {
-      seenMovies.add(moieLengths[i]);
+      seenMovies.add(movieLengths[i]);
     }
   }
   return false;
