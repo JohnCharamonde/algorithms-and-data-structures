@@ -17,24 +17,29 @@
 // won't work for contractions...
 let countWords = (string) => {
   let wordCounts = {};
+  let isCurrentCharALetter;
   let word = '';
+
   let isLetter = (char) => {
     return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char) >= 0;
   }
+
   for(let i = 0; i < string.length; i++) {
-    if(isLetter(string[i])) {
-      word += string[i];
-    } else {
+    isCurrentCharALetter = isLetter(string[i]);
+
+    if(isCurrentCharALetter) {
+      word += string[i].toLowerCase();
+    }
+
+    if (!isCurrentCharALetter || i === string.length - 1) {
       if(word.length) {
         wordCounts[word] ? wordCounts[word]++ : wordCounts[word] = 1;
         word = '';
       }
     }
   }
-  if(word.length) {
-    wordCounts[word] ? wordCounts[word]++ : wordCounts[word] = 1;
-  }
-  return wordCounts;
-}
 
-countWords('I wonder what to write here. I really do wonder... perhaps it will work. Perhaps it will not.')
+  return wordCounts;
+};
+
+countWords('This is a message that will be hashed to a map... hooray! HoOrAy!!! Yaaaayyy!!!!!! WOOHOO! That is enough... Woohoo. This function does not account for contractions')
