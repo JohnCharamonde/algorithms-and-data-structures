@@ -15,10 +15,39 @@
 // You could make a reasonable argument to use regex in your solution. We won't, mainly because performance is difficult to measure and can get pretty bad.
 
 // won't work for contractions...
+// let countWords = (string) => {
+//   let wordCounts = {};
+//   let isCurrentCharALetter;
+//   let word = '';
+
+//   let isLetter = (char) => {
+//     return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char) >= 0;
+//   }
+
+//   for(let i = 0; i < string.length; i++) {
+//     isCurrentCharALetter = isLetter(string[i]);
+
+//     if(isCurrentCharALetter) {
+//       word += string[i].toLowerCase();
+//     }
+
+//     if (!isCurrentCharALetter || i === string.length - 1) {
+//       if(word.length) {
+//         wordCounts[word] ? wordCounts[word]++ : wordCounts[word] = 1;
+//         word = '';
+//       }
+//     }
+//   }
+
+//   return wordCounts;
+// };
+
 let countWords = (string) => {
   let wordCounts = {};
   let isCurrentCharALetter;
   let word = '';
+  let start = null;
+  let end = null;
 
   let isLetter = (char) => {
     return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char) >= 0;
@@ -27,15 +56,18 @@ let countWords = (string) => {
   for(let i = 0; i < string.length; i++) {
     isCurrentCharALetter = isLetter(string[i]);
 
-    if(isCurrentCharALetter) {
-      word += string[i].toLowerCase();
+    if(!start && isCurrentCharALetter) {
+      start = i;
+      end = i;
+    } else if(start && isCurrentCharALetter) {
+      end++;
     }
 
-    if (!isCurrentCharALetter || i === string.length - 1) {
-      if(word.length) {
+    if(start && (!isCurrentCharALetter || i === string.length - 1)) {
+        word = string.slice(start, end + 1).toLowerCase();
         wordCounts[word] ? wordCounts[word]++ : wordCounts[word] = 1;
-        word = '';
-      }
+        start = null;
+        end = null;
     }
   }
 
