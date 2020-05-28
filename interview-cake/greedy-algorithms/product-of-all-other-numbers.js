@@ -77,3 +77,5 @@ let getProductsOfAllIntsExceptAtIndex = (intArray) => {
 }
 
 getProductsOfAllIntsExceptAtIndex([1, 7, 3, 4])
+
+// Start with a brute force solution, look for repeat work in that solution, and modify it to only do that work once.
