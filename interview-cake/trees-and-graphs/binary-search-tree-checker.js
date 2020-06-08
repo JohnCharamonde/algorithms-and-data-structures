@@ -34,3 +34,14 @@ function isBinarySearchTree(treeRoot) {
   }
   return true;
 }
+
+function isBinarySearchTree(treeRoot, lowerBound, upperBound) {
+  lowerBound = lowerBound !== undefined ? lowerBound : -Infinity;
+  upperBound = upperBound !== undefined ? upperBound : Infinity;
+
+  if(!treeRoot) return true;
+
+  if(treeRoot.value <= lowerBound || treeRoot.value >= upperBound) return false;
+
+  return isBinarySearchTree(treeRoot.left, lowerBound, treeRoot.value) && isBinarySearchTree(treeRoot.right, treeRoot.value, upperBound);
+}
