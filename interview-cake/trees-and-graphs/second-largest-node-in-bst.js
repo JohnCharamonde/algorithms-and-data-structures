@@ -60,16 +60,37 @@
 //   return findSecondLargest(treeRoot.right, treeRoot.value)
 // }
 
+
+
+// WORKING SOLUTION USING RECURSION...
+// function findLargest(treeNode) {
+//   if(!treeNode) throw new Error('Tree must have at least 1 node!');
+//   if(treeNode.right) return findLargest(treeNode.right);
+//   return treeNode.value;
+// }
+
+// function findSecondLargest(treeNode) {
+//   if(!treeNode || !treeNode.right && !treeNode.left) throw new Error('Tree must have a least 2 nodes!')
+//   if(treeNode.left && !treeNode.right) return findLargest(treeNode.left);
+//   if(treeNode.right && !treeNode.right.right && !treeNode.right.left) return treeNode.value;
+//   return findSecondLargest(treeNode.right);
+// }
+
+// Iterative solution
 function findLargest(treeNode) {
-  if(!treeNode) throw new Error('Tree must have at least 1 node!');
-  if(treeNode.right) return findLargest(treeNode.right);
-  return treeNode.value;
-}
+    let current = treeNode;
+    while(current) {
+      if(!current.right) return current.value;
+      current = current.right;
+    }
+  }
 
 function findSecondLargest(treeNode) {
-  if(!treeNode || !treeNode.right && !treeNode.left) throw new Error('Tree must have a least 2 nodes!')
-  if(treeNode.left && !treeNode.right) return findLargest(treeNode.left);
-  if(treeNode.right && !treeNode.right.right && !treeNode.right.left) return treeNode.value;
-  return findSecondLargest(treeNode.right);
+    if(!treeNode || !treeNode.left && !treeNode.right) throw new Error('Must have at least 2 nodes in the tree!')
+    let current = treeNode;
+    while(current) {
+      if(!current.right && treeNode.left) return findLargest(current.left);
+      if(current.right && !current.right.left && !current.right.right) return current.value;
+      current = current.right;
+    }
 }
-
