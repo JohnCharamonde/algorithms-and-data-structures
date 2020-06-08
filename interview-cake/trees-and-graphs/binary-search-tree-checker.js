@@ -35,6 +35,7 @@ function isBinarySearchTree(treeRoot) {
   return true;
 }
 
+// recursive solution
 function isBinarySearchTree(treeRoot, lowerBound, upperBound) {
   lowerBound = lowerBound !== undefined ? lowerBound : -Infinity;
   upperBound = upperBound !== undefined ? upperBound : Infinity;
