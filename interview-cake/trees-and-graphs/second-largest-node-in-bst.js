@@ -93,4 +93,4 @@ function findSecondLargest(treeNode) {
       if(current.right && !current.right.left && !current.right.right) return current.value;
       current = current.right;
     }
-}
+}                                                       
