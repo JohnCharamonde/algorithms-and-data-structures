@@ -26,6 +26,7 @@ kthToLastNode(2, a);
 // Returns the node with value "Devil's Food" (the 2nd to last node)
 
 function kthToLastNode(k, head) {
+    if(k <= 0) throw new Error('k <= 0')
     let current = head;
     let length = 0;
     while(current) {
@@ -41,4 +42,25 @@ function kthToLastNode(k, head) {
     return current;
 };
 
+// use a measuring stick of length k
+function stickMethodKthToLastNode(k, head) {
+    let start = head;
+    let end = head;
+    let stick = 1;
 
+    while(end) {
+        if(stick < k) {
+            if(!end.next) {
+                throw new Error('k > list length')
+            }
+            end = end.next;
+            stick++;
+        } else {
+          if(end.next === null) {
+            return start;
+          }
+            end = end.next;
+            start = start.next;
+        }
+    }
+}
