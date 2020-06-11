@@ -44,6 +44,7 @@ function kthToLastNode(k, head) {
 
 // use a measuring stick of length k
 function stickMethodKthToLastNode(k, head) {
+    if(k <= 0) throw new Error('k <= 0')
     let start = head;
     let end = head;
     let stick = 1;
